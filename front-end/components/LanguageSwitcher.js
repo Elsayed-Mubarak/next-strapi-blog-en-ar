@@ -8,9 +8,13 @@ function LanguageSwitcher({ t }) {
 
     return (
         <LanguageSwitcherStyled>
-            <button type="button" onClick={() => { i18n.changeLanguage('ar'); }}
+            <button type="button" onClick={() => {
+                i18n.changeLanguage('ar');
+            }}
                 className={language === 'ar' ? 'is-active' : ''}>{t('AR')}</button>
-            <button type="button" onClick={() => { i18n.changeLanguage('en'); }}
+            <button type="button" onClick={() => {
+                i18n.changeLanguage('en');
+            }}
                 className={language === 'en' ? 'is-active' : ''}>{t('EN')}</button>
         </LanguageSwitcherStyled>
     )
