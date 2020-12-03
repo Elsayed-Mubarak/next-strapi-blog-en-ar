@@ -1,9 +1,14 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
+import { I18nContext } from 'next-i18next'
+import { useContext } from 'react'
+import { withTranslation } from '../i18n'
 
-function Card({ movie }) {
+function Card({ movie, t }) {
     const { API_URL } = process.env
-    console.log({ movie });
+    //  console.log({ movie });
+    const { i18n: { language } } = useContext(I18nContext)
+
     if (!movie.genre) {
         movie.genre = {}
         movie.genre.slug = 'uncategorised'
@@ -17,11 +22,16 @@ function Card({ movie }) {
                 </div>
             )}
             <div className="body">
-                <h3>{movie.title}</h3>
-                <p dangerouslySetInnerHTML={{ __html: `${movie.description.length < 100 ? movie.description : movie.description.substring(0, 100)} ...` }} />
+                <h3>{language === 'en' ? movie.title : movie.title_ar}</h3>
+                <p dangerouslySetInnerHTML={{
+                    __html: `${(language == 'en') ?
+                        (movie.description.substring(0, 100))
+                        :
+                        (movie.description_ar.substring(0, 100))} ...`
+                }} />
 
                 <Link href="/movies/[genre]/[slug]" as={`/movies/${movie.genre.slug}/${movie.slug}`}>
-                    <a>More about this article</a>
+                    <a>{t('common:More about this article')}</a>
                 </Link>
             </div>
         </CardStyled>
@@ -56,4 +66,4 @@ const CardStyled = styled.div`
     }
 `
 
-export default Card
+export default withTranslation()(Card)

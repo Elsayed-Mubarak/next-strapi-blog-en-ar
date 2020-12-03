@@ -1,31 +1,17 @@
-import { i18n } from '../i18n'
+import { i18n, withTranslation } from '../i18n'
 import styled from "@emotion/styled"
 import { useContext } from 'react'
 import { I18nContext } from 'next-i18next'
 
-function LanguageSwitcher() {
+function LanguageSwitcher({ t }) {
     const { i18n: { language } } = useContext(I18nContext)
 
-/*
-    function changeToLTR() {
-
-    }
-
-    function changeToRTL() {
-    }
-
-*/
     return (
         <LanguageSwitcherStyled>
-            <button type="button" onClick={() => {
-                i18n.changeLanguage('ar');
-                //    changeToRTL();
-            }}
-                className={language === 'ar' ? 'is-active' : ''}>AR</button>
-            <button type="button" onClick={() => {
-                i18n.changeLanguage('en');
-                //      changeToLTR()
-            }} className={language === 'en' ? 'is-active' : ''}>EN</button>
+            <button type="button" onClick={() => { i18n.changeLanguage('ar'); }}
+                className={language === 'ar' ? 'is-active' : ''}>{t('AR')}</button>
+            <button type="button" onClick={() => { i18n.changeLanguage('en'); }}
+                className={language === 'en' ? 'is-active' : ''}>{t('EN')}</button>
         </LanguageSwitcherStyled>
     )
 }
@@ -37,4 +23,4 @@ const LanguageSwitcherStyled = styled.div`
     }
 `;
 
-export default LanguageSwitcher
+export default withTranslation()(LanguageSwitcher)

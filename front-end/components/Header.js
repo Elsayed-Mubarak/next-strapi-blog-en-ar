@@ -4,8 +4,9 @@ import { Flex, Box } from 'reflexbox'
 import Navigation from 'components/Navigation'
 import Link from 'next/link'
 import LanguageSwitcher from 'components/LanguageSwitcher'
+import { withTranslation } from '../i18n'
 
-function Header({ isDark }) {
+function Header({ isDark, t }) {
     return (
         <HeaderStyled isDark={isDark}>
             <Box variant="container" >
@@ -14,7 +15,7 @@ function Header({ isDark }) {
                         <Link href="/">
                             <a>
                                 <img className="img-size" src="/images/logo.png" alt="Sites logo" />
-                                <span className="logo-text">Kwareict</span>
+                                <span className="logo-text">{t('common:Kwareict')}</span>
                             </a>
                         </Link>
                     </div>
@@ -51,4 +52,4 @@ const HeaderStyled = styled.header`
     }
 `
 
-export default Header
+export default withTranslation()(Header)

@@ -1,12 +1,14 @@
 import styled from '@emotion/styled'
 import { Link } from '../i18n'
 import { useRouter } from 'next/router'
+import { I18nContext } from 'next-i18next'
 import { useContext } from 'react'
 import HeaderContext from '../contexts/HeaderContext'
 
 function Navigation() {
     const router = useRouter()
-    const {menuItems} = useContext(HeaderContext)
+    const { menuItems } = useContext(HeaderContext)
+    const { i18n: { language } } = useContext(I18nContext)
 
     return (
         <NavigationStyled>
@@ -14,7 +16,7 @@ function Navigation() {
                 {menuItems.map(item => (
                     <li key={item.id}>
                         <Link href={item.slug}>
-                            <a className={router.pathname === item.slug ? 'active' : '' }>{item.title}</a>
+                            <a className={router.pathname === item.slug ? 'active' : ''}>{language == 'en' ? item.title : item.title_ar}</a>
                         </Link>
                     </li>
                 ))}

@@ -16,6 +16,9 @@
     },
     "slug": {
       "type": "string"
+    },
+    "title_ar": {
+      "type": "string"
     }
   }
 }

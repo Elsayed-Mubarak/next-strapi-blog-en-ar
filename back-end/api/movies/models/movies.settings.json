@@ -46,6 +46,12 @@
       "collection": "actors",
       "via": "blogs",
       "dominant": true
+    },
+    "title_ar": {
+      "type": "string"
+    },
+    "description_ar": {
+      "type": "richtext"
     }
   }
 }
